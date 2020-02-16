@@ -2,3 +2,34 @@
   text-align: center;
 }
 
+.red{
+  color:red;
+  text-decoration: wavy;
+}
+
+.bold{
+  font-weight: 800;
+}
+
+.buttoon{
+  padding:30px;
+  background: brown;
+  color: aliceblue;
+
+}
+
+.buttoon:hover {
+  padding:30px;
+  background: pink;
+  color:black;
+
+  }
+
+  .buttoon.greenDOD{
+    background-color: green;
+
+  }
+
+  .buttoon.greenDOD:hover{
+    background-color: lightgreen;
+  }

@@ -1,47 +1,70 @@
 import React, { Component } from 'react';
-import './App.css';
-import Validation from './Validation/Validation'
-import Char from './Char/Char'
+import klasi from './App.css';
+import Person from './Person/Person';
 
 class App extends Component {
 
-state={
-  howLong: 0,
-  text:''
-}
+  state={
+    userList:[
+      {name:'Alex', age:32},
+      {name:'Blue', age:2},
+      {name:'Kim', age:29}
+    ],
+    show:true
+  }
+
+  toggleHandler=()=>{
+    let change=this.state.show;
+    change=!change;
+    this.setState({show:change});
+  }
+
+  deleteHandler=(index)=>{
+    let niza = this.state.userList;
+    niza.splice(index,1);
+    this.setState({userList:niza});
+  }
+
+  render() {
+
+    let classList=[];
+    if(this.state.userList.length<=2){
+      classList.push(klasi.red);
+    }
+    if(this.state.userList.length<=1){
+      classList.push(klasi.bold);
+    }
+    
+     let buttonClasses =[klasi.buttoon];
 
 
-countString=(event)=>{
-    this.setState({howLong: event.target.value.length,
-    text: event.target.value })
-}
+    let list=null;
 
-removeBox=(index)=>{
-    const newText = this.state.text.split('');
-    newText.splice(index,1);
-    const update = newText.join('');
-    this.setState({text:update})
-}
-
-   render() {
-  
-   const list = (
-     <div>
-       {
-         this.state.text.split('').map((el,index)=>
+    if(this.state.show){
+      
+     list = (
+      <div>
+        {
+          this.state.userList.map((el,ind)=>
           {
-            return <Char click={()=>this.removeBox(index)} bukva={el} key={index}/>
-          })
-       }
-     </div>
-   );
+           
+            return <Person click={()=>this.deleteHandler(ind)} name={el.name} age={el.age} key={ind}/>
+          }
+          )}
+      </div>
+    );
+          buttonClasses.push(klasi.greenDOD);
+        }
 
     return(
-      <div>
-       <input onChange={this.countString} type="text" value={this.state.text}></input>
-        <Validation length={this.state.howLong}/>
-        {list}
-      </div>
+    
+          <div className={klasi.App}>
+          <p className={classList.join(' ')}>This is Working!!!!111</p>
+          <button className={buttonClasses.join(' ')} onClick={this.toggleHandler}>Toggle</button>
+          {list}
+        </div>
+      
+      
       );
   }
 }
