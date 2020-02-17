@@ -1,7 +1,8 @@
 .Person{
-    background-color: aquamarine;
+    background-color: grey;
     border:1px solid black;
     width: 50%;
+    border-radius: 20%;
     margin: 10px auto;
 
 
@@ -12,3 +13,8 @@
         width:80%;
         background: 'yellow'
 }}
+
+.input{
+    display: block;
+    margin: 20px auto;
+}

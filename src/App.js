@@ -25,6 +25,13 @@ class App extends Component {
     this.setState({userList:niza});
   }
 
+  changeHandler=(event,i)=>{
+    let niza = [...this.state.userList];
+    niza[i].name=event.target.value;
+    this.setState({userList:niza})
+      
+  }
+
   render() {
 
     let classList=[];
@@ -48,7 +55,7 @@ class App extends Component {
           this.state.userList.map((el,ind)=>
           {
            
-            return <Person click={()=>this.deleteHandler(ind)} name={el.name} age={el.age} key={ind}/>
+            return <Person click={()=>this.deleteHandler(ind)} change={(event)=>this.changeHandler(event,ind)} name={el.name} age={el.age} key={ind}/>
           }
           )}
       </div>
