@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import klasi from './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
 
@@ -34,41 +35,27 @@ class App extends Component {
 
   render() {
 
-    let classList=[];
-    if(this.state.userList.length<=2){
-      classList.push(klasi.red);
-    }
-    if(this.state.userList.length<=1){
-      classList.push(klasi.bold);
-    }
-    
-     let buttonClasses =[klasi.buttoon];
-
-
     let list=null;
 
     if(this.state.show){
       
-     list = (
-      <div>
-        {
-          this.state.userList.map((el,ind)=>
-          {
-           
-            return <Person click={()=>this.deleteHandler(ind)} change={(event)=>this.changeHandler(event,ind)} name={el.name} age={el.age} key={ind}/>
-          }
-          )}
-      </div>
-    );
-          buttonClasses.push(klasi.greenDOD);
-        }
+     list =       
+        <Persons
+        userList={this.state.userList}
+        click={this.deleteHandler}
+        change={this.changeHandler}
+        />
+        
+         }
 
     return(
     
           <div className={klasi.App}>
-          <p className={classList.join(' ')}>This is Working!!!!111</p>
-          <button className={buttonClasses.join(' ')} onClick={this.toggleHandler}>Toggle</button>
-          {list}
+            <Cockpit
+            show={this.state.show}
+            userList={this.state.userList}
+            click={this.toggleHandler}/>
+            {list}
         </div>
       
       
