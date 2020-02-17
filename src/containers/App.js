@@ -5,14 +5,27 @@ import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
 
-  state={
-    userList:[
-      {name:'Alex', age:32},
-      {name:'Blue', age:2},
-      {name:'Kim', age:29}
-    ],
-    show:true
-  }
+  constructor(props){
+    super(props);
+    this.state={
+      userList:[
+        {name:'Alex', age:32},
+        {name:'Blue', age:2},
+        {name:'Kim', age:29}
+      ],
+      show:true
+    }
+    console.log('constuctor');  }
+
+    static getDerivedStateFromProps(props,state){
+      console.log('derived grom props');
+      return state;
+      }
+
+      componentDidMount(){
+        console.log('component did mounf')
+      }
+ 
 
   toggleHandler=()=>{
     let change=this.state.show;
@@ -34,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('render');
     let list=null;
 
     if(this.state.show){
